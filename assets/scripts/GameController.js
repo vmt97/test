@@ -1,6 +1,3 @@
-
-var UIController = require("UIController");
-
 var GameController = cc.Class({
     extends: cc.Component,
 
@@ -24,7 +21,7 @@ var GameController = cc.Class({
             default: null,
             type: cc.Prefab
         },
-
+        UIController: require("UIConTroller"),
         score: 0,
         canPlay: true
 
@@ -43,9 +40,6 @@ var GameController = cc.Class({
 
     initLevel: function () {
         let index = 0;
-        if (UIController)
-            UIController.instance.hidePlayButton();
-
         let typeCreate = 0;
         let action1 = cc.delayTime(0.1);
         let action2 = cc.callFunc(() => {
@@ -134,8 +128,7 @@ var GameController = cc.Class({
     checkWinGame() {
         if (this.listSquare.length > 0)
             return;
-        if (UIController)
-            UIController.instance.showVictory();
+            this.UIController.showVictory();
     },
 
     countScore() {
@@ -148,13 +141,11 @@ var GameController = cc.Class({
     },
 
     setScore() {
-        if (UIController)
-            UIController.instance.showScore(this.score);
+        this.UIController.showScore(this.score);
     },
 
     playAgain() {
-        if (UIController)
-            UIController.instance.hideUIplayAgain();
+        this.UIController.hideUIplayAgain();
         this.initLevel();
     },
 

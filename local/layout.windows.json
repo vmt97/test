@@ -70,12 +70,12 @@
         "type": "dock-h"
       },
       "panels": [
-        "hierarchy",
         "assets",
+        "inspector",
+        "hierarchy",
         "console",
         "timeline",
         "game-window",
-        "inspector",
         "scene"
       ]
     }

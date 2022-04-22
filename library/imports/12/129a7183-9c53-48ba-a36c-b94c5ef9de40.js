@@ -4,8 +4,6 @@ cc._RF.push(module, '129a7GDnFNIuqNsuUxe+d5A', 'GameController');
 
 "use strict";
 
-var UIController = require("UIController");
-
 var GameController = cc.Class({
     extends: cc.Component,
 
@@ -29,7 +27,7 @@ var GameController = cc.Class({
             default: null,
             type: cc.Prefab
         },
-
+        UIController: require("UIConTroller"),
         score: 0,
         canPlay: true
 
@@ -49,8 +47,6 @@ var GameController = cc.Class({
         var _this = this;
 
         var index = 0;
-        if (UIController) UIController.instance.hidePlayButton();
-
         var typeCreate = 0;
         var action1 = cc.delayTime(0.1);
         var action2 = cc.callFunc(function () {
@@ -125,7 +121,7 @@ var GameController = cc.Class({
     },
     checkWinGame: function checkWinGame() {
         if (this.listSquare.length > 0) return;
-        if (UIController) UIController.instance.showVictory();
+        this.UIController.showVictory();
     },
     countScore: function countScore() {
         var _this2 = this;
@@ -138,10 +134,10 @@ var GameController = cc.Class({
         this.node.runAction(cc.repeat(cc.sequence(action1, action2), 10));
     },
     setScore: function setScore() {
-        if (UIController) UIController.instance.showScore(this.score);
+        this.UIController.showScore(this.score);
     },
     playAgain: function playAgain() {
-        if (UIController) UIController.instance.hideUIplayAgain();
+        this.UIController.hideUIplayAgain();
         this.initLevel();
     },
     setCanPlay: function setCanPlay(canPlay) {
