@@ -46,6 +46,7 @@ var GameController = cc.Class({
     initLevel: function initLevel() {
         var _this = this;
 
+        this.UIController.hidePlayButton();
         var index = 0;
         var typeCreate = 0;
         var action1 = cc.delayTime(0.1);

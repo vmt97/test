@@ -18,12 +18,9 @@ cc.Class({
         }
     },
 
-    statics: {
-        instance: null
-    },
+    
 
     onLoad() {
-        UIConTroller.instance = this;
     },
 
     showScore(score) {

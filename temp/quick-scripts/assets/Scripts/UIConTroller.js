@@ -24,13 +24,7 @@ cc.Class({
         }
     },
 
-    statics: {
-        instance: null
-    },
-
-    onLoad: function onLoad() {
-        UIConTroller.instance = this;
-    },
+    onLoad: function onLoad() {},
     showScore: function showScore(score) {
         this.scoreLabel.string = "Score: " + score;
     },
