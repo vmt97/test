@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "trucxanh6",
+    "texture": "4d0993b4-c2c3-4df8-b6aa-85bf74f14bed",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      64,
+      64
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      64,
+      64
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

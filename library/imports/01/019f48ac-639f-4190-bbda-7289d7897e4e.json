@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "trucxanh_bg",
+    "texture": "61a0b5dd-0778-4d06-8c9d-f6a9a0af2f14",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      800,
+      480
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      800,
+      480
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}
