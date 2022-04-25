@@ -11691,3 +11691,89 @@ Class ID: "bde07hH36lFD7NcI2WClEpB"
 2022-04-25T05:00:20.211Z - info: Only the prefab node "Square" and its child nodes are saved.
 2022-04-25T05:00:56.874Z - info: Only the prefab node "Square" and its child nodes are saved.
 2022-04-25T05:00:57.079Z - info: Only the prefab node "Square" and its child nodes are saved.
+2022-04-25T05:47:40.280Z - normal: Start building with options : {
+  "actualPlatform": "web-desktop",
+  "android-instant": {
+    "REMOTE_SERVER_ROOT": "",
+    "host": "",
+    "pathPattern": "",
+    "recordPath": "",
+    "scheme": "https",
+    "skipRecord": false
+  },
+  "apiLevel": "",
+  "appABIs": [],
+  "appBundle": false,
+  "baidugame": {
+    "REMOTE_SERVER_ROOT": "",
+    "appid": "testappid",
+    "orientation": "portrait",
+    "subContext": ""
+  },
+  "buildPath": "/Users/fe-minhthao/Desktop/test/build",
+  "debug": false,
+  "dest": "/Users/fe-minhthao/Desktop/test/build/web-desktop",
+  "embedWebDebugger": false,
+  "encryptJs": true,
+  "excludeScenes": [],
+  "excludedModules": [],
+  "fb-instant-games": {},
+  "includeSDKBox": false,
+  "inlineSpriteFrames": true,
+  "inlineSpriteFrames_native": true,
+  "md5Cache": false,
+  "mergeStartScene": false,
+  "optimizeHotUpdate": false,
+  "orientation": {
+    "landscapeLeft": true,
+    "landscapeRight": true,
+    "portrait": false,
+    "upsideDown": false
+  },
+  "packageName": "org.cocos2d.NewProject_1",
+  "platform": "web-desktop",
+  "previewHeight": "720",
+  "previewWidth": "1280",
+  "qqplay": {
+    "REMOTE_SERVER_ROOT": "",
+    "orientation": "portrait",
+    "zip": false
+  },
+  "scenes": [
+    "d1f87d2f-8735-4873-b8f2-76534c1e90b9"
+  ],
+  "sourceMaps": false,
+  "startScene": "d1f87d2f-8735-4873-b8f2-76534c1e90b9",
+  "template": "link",
+  "title": "NewProject_1",
+  "useDebugKeystore": true,
+  "vsVersion": "auto",
+  "webOrientation": "auto",
+  "wechatgame": {
+    "REMOTE_SERVER_ROOT": "",
+    "appid": "wx6ac3f5090a6b99c5",
+    "orientation": "portrait",
+    "separate_engine": false,
+    "subContext": ""
+  },
+  "xxteaKey": "d9f0f560-2a06-41",
+  "zipCompressJs": true,
+  "project": "/Users/fe-minhthao/Desktop/test",
+  "projectName": "NewProject_1",
+  "debugBuildWorker": false
+}
+2022-04-25T05:47:40.283Z - normal: Building /Users/fe-minhthao/Desktop/test
+2022-04-25T05:47:40.283Z - normal: Destination /Users/fe-minhthao/Desktop/test/build/web-desktop
+2022-04-25T05:47:40.391Z - normal: Delete /Users/fe-minhthao/Desktop/test/build/web-desktop/subpackages/**/*,/Users/fe-minhthao/Desktop/test/build/web-desktop/**/*
+2022-04-25T05:47:41.626Z - normal: Start building assets
+2022-04-25T05:47:41.626Z - normal: Start spawn build-worker
+2022-04-25T05:47:42.078Z - normal: Finish spawn build-worker
+2022-04-25T05:47:42.078Z - normal: Start init build-worker
+2022-04-25T05:47:43.940Z - normal: Finish init build-worker
+2022-04-25T05:47:43.940Z - normal: Start build-assets in worker
+2022-04-25T05:47:44.251Z - normal: Finish build-assets in worker
+2022-04-25T05:47:44.253Z - normal: Finish building assets
+2022-04-25T05:47:44.262Z - normal: Start building plugin scripts
+2022-04-25T05:47:44.286Z - normal: Generating main.js from /Applications/CocosCreator.app/Contents/Resources/static/build-templates/shares/main.js
+2022-04-25T05:47:44.294Z - normal: Generating html from /Applications/CocosCreator.app/Contents/Resources/static/build-templates/web-desktop/template/index.html
+2022-04-25T05:47:44.303Z - normal: Built to "/Users/fe-minhthao/Desktop/test/build/web-desktop" successfully

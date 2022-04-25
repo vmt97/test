@@ -37,7 +37,7 @@
             ],
             "height": 865,
             "type": "panel",
-            "width": 238
+            "width": 221
           },
           {
             "children": [
@@ -48,7 +48,7 @@
                 ],
                 "height": 597,
                 "type": "panel",
-                "width": 914
+                "width": 931
               },
               {
                 "active": 0,
@@ -59,12 +59,12 @@
                 ],
                 "height": 266,
                 "type": "panel",
-                "width": 914
+                "width": 931
               }
             ],
             "height": 865,
             "type": "dock-v",
-            "width": 914
+            "width": 931
           }
         ],
         "type": "dock-h"
@@ -78,7 +78,8 @@
         "game-window",
         "scene"
       ]
-    }
+    },
+    "window-1650865625194": {}
   },
   "panels": {
     "cocos-services": {
