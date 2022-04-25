@@ -14,6 +14,11 @@ cc._RF.push(module, 'bde07hH36lFD7NcI2WClEpB', 'Square');
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 var GameController = require("GameController");
+var squareState;
+squareState = cc.Enum({
+    OPEN: 0,
+    CLOSE: 1
+});
 
 cc.Class({
     extends: cc.Component,
@@ -34,16 +39,24 @@ cc.Class({
             default: null,
             type: cc.SpriteFrame
         },
-        t: {
+        spriteOpen: {
             default: null,
             type: cc.SpriteFrame
+        },
+        state: {
+            default: squareState.CLOSE,
+            type: squareState
         }
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad: function onLoad() {
+        this.state = squareState.CLOSE;
         this.node.on("INIT_INFO", this.initInfor, this);
+        this.node.on("OPEN_SQUARE", this.openSquare, this);
+        this.node.on("RESET_SQUARE", this.resetSquare, this);
+        this.node.on("MATCH_SQUARE", this.matchSquare, this);
         this.node.on(cc.Node.EventType.TOUCH_START, this.tounchSquare, this);
     },
     initInfor: function initInfor(index, type, Sprite) {
@@ -55,66 +68,40 @@ cc.Class({
         this.labelType.string = type;
     },
     tounchSquare: function tounchSquare() {
-        var _this = this;
+        if (GameController.instance.getTmpSquare().length >= 2) return;
+        if (this.state === squareState.CLOSE) this.openSquare();
 
-        if (!GameController.instance.isCanPlay()) return;
-        cc.log("can play: " + GameController.instance.isCanPlay());
-
-        var tempSquare = GameController.instance.getTmpSquare();
-        if (!tempSquare) {
-            this.openSquare();
-            GameController.instance.setTmpSquare(this);
-        } else {
-            var tempType = tempSquare.getType();
-
-            if (tempSquare != this) {
-                var sequence = cc.sequence(cc.callFunc(function () {
-                    _this.openSquare();
-                }), cc.delayTime(1), cc.callFunc(function () {
-                    if (tempType === _this.getType()) {
-                        _this.matchSquare();
-                        tempSquare.matchSquare();
-                        GameController.instance.countScore();
-                        GameController.instance.checkWinGame();
-                        GameController.instance.setCanPlay(false);
-                    } else {
-                        _this.resetSquare();
-                        tempSquare.resetSquare();
-                        GameController.instance.clearTmpSquare();
-                    }
-                }));
-                this.node.runAction(sequence);
-            }
-        }
+        GameController.instance.pushToTempSquares(this);
     },
     openSquare: function openSquare() {
-        var _this2 = this;
+        var _this = this;
 
+        this.state = squareState.OPEN;
         var scaleIn = cc.scaleTo(0.3, 0, 1);
         var scaleOut = cc.scaleTo(0.3, 1, 1);
         var sequence = cc.sequence(scaleIn, cc.callFunc(function () {
-            _this2.node.getComponent(cc.Sprite).spriteFrame = _this2.spriteOpen;
+            _this.node.getComponent(cc.Sprite).spriteFrame = _this.spriteOpen;
         }), scaleOut);
         this.node.runAction(sequence);
     },
     resetSquare: function resetSquare() {
-        var _this3 = this;
+        var _this2 = this;
 
-        GameController.instance.setCanPlay(true);
+        this.state = squareState.CLOSE;
         var scaleIn = cc.scaleTo(0.3, 0, 1);
         var scaleOut = cc.scaleTo(0.3, 1, 1);
         var sequence = cc.sequence(scaleIn, cc.callFunc(function () {
-            _this3.node.getComponent(cc.Sprite).spriteFrame = _this3.defaultSprite;
+            _this2.node.getComponent(cc.Sprite).spriteFrame = _this2.defaultSprite;
         }), scaleOut);
         this.node.runAction(sequence);
     },
     matchSquare: function matchSquare() {
-        var _this4 = this;
+        var _this3 = this;
 
         this.node.zIndex = 1;
         var scaleIn = cc.scaleTo(0.3, 2, 2);
         var sequence = cc.sequence(scaleIn, cc.callFunc(function () {
-            _this4.node.removeFromParent(true);
+            _this3.node.removeFromParent(true);
             GameController.instance.clearTmpSquare();
             GameController.instance.checkWinGame();
             GameController.instance.setCanPlay(true);

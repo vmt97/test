@@ -8,6 +8,11 @@
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 var GameController = require("GameController");
+var squareState;
+squareState = cc.Enum({
+  OPEN: 0,
+  CLOSE: 1
+});
 
 cc.Class({
     extends: cc.Component,
@@ -28,16 +33,24 @@ cc.Class({
             default: null,
             type: cc.SpriteFrame
         },
-        t: {
+        spriteOpen: {
             default: null,
             type: cc.SpriteFrame
+        },
+        state: {
+            default: squareState.CLOSE,
+            type:squareState
         }
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
+        this.state = squareState.CLOSE;
         this.node.on("INIT_INFO", this.initInfor, this);
+        this.node.on("OPEN_SQUARE", this.openSquare, this);
+        this.node.on("RESET_SQUARE", this.resetSquare, this);
+        this.node.on("MATCH_SQUARE", this.matchSquare, this);
         this.node.on(cc.Node.EventType.TOUCH_START,this.tounchSquare,this);
     },
 
@@ -53,46 +66,17 @@ cc.Class({
     },
 
     tounchSquare(){
-        if(!GameController.instance.isCanPlay())
+        if(GameController.instance.getTmpSquare().length >= 2)
             return;
-        cc.log("can play: " + GameController.instance.isCanPlay());
-
-        let tempSquare = GameController.instance.getTmpSquare();
-        if(!tempSquare){
+        if(this.state === squareState.CLOSE)
             this.openSquare();
-            GameController.instance.setTmpSquare(this);
-        }
-        else{
-            let tempType = tempSquare.getType();
 
-            if(tempSquare != this){
-                let sequence = cc.sequence(
-                    cc.callFunc(()=>{
-                        this.openSquare();
-                    }),
-                    cc.delayTime(1),
-                    cc.callFunc(()=>{
-                        if(tempType === this.getType()){
-                            this.matchSquare();
-                            tempSquare.matchSquare();
-                            GameController.instance.countScore();
-                            GameController.instance.checkWinGame();
-                            GameController.instance.setCanPlay(false);
-                        }
-                        else{
-                            this.resetSquare();
-                            tempSquare.resetSquare();
-                            GameController.instance.clearTmpSquare();
-                        }
-                    })
-                )
-                this.node.runAction(sequence);
-            }
-        }
+        GameController.instance.pushToTempSquares(this);
     },
 
 
     openSquare(){
+        this.state = squareState.OPEN;
         let scaleIn = cc.scaleTo(0.3,0,1);
         let scaleOut = cc.scaleTo(0.3,1,1);
         let sequence = cc.sequence(
@@ -105,7 +89,7 @@ cc.Class({
     },
 
     resetSquare(){
-        GameController.instance.setCanPlay(true);
+        this.state = squareState.CLOSE;
         let scaleIn = cc.scaleTo(0.3,0,1);
         let scaleOut = cc.scaleTo(0.3,1,1);
         let sequence = cc.sequence(
@@ -142,3 +126,5 @@ cc.Class({
         return this.index;
     }
 });
+
+

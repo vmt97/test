@@ -37,7 +37,7 @@
     "_prefab": {
       "__id__": 10
     },
-    "_opacity": 255,
+    "_opacity": 0,
     "_color": {
       "__type__": "cc.Color",
       "r": 255,
@@ -188,7 +188,7 @@
       "__id__": 1
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_level": 2,
     "_components": [
       {
@@ -332,7 +332,8 @@
     "defaultSprite": {
       "__uuid__": "9ee85b49-3d79-42f7-8cda-bbe5d3141c74"
     },
-    "t": null,
+    "spriteOpen": null,
+    "state": 1,
     "_id": ""
   },
   {
