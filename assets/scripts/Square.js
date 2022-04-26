@@ -1,13 +1,4 @@
-// Learn cc.Class:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/class.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/class.html
-// Learn Attribute:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/reference/attributes.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
-//  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
-var GameController = require("GameController");
+
 var squareState;
 squareState = cc.Enum({
   OPEN: 0,
@@ -21,6 +12,7 @@ cc.Class({
         index: 0,
         type: 0,
 
+        GameController : require("GameController"),
         labelIndex: {
             default : null,
             type: cc.Label
@@ -48,30 +40,58 @@ cc.Class({
     onLoad () {
         this.state = squareState.CLOSE;
         this.node.on("INIT_INFO", this.initInfor, this);
+        this.node.on("REUSE", this.reuse, this);
         this.node.on("OPEN_SQUARE", this.openSquare, this);
         this.node.on("RESET_SQUARE", this.resetSquare, this);
         this.node.on("MATCH_SQUARE", this.matchSquare, this);
-        this.node.on(cc.Node.EventType.TOUCH_START,this.tounchSquare,this);
+        this.node.on("TOUCH_SQUARE",this.touchSquare,this);
+        this.node.on("GET_TYPE",this.squareType,this);
+
+        this.node.on("SHOW_INDEX",this.showIndex,this);
+
+        // this.node.on(cc.Node.EventType.TOUCH_START,this.touchSquare,this);
+
+       
+        let fadeIn = cc.fadeIn(0.1);
+        this.node.runAction(fadeIn);
+    },
+
+    showIndex(){
+        cc.log("index: " + this.index);
     },
 
 
-    initInfor(index, type, Sprite){
+    onClickSquare(){
+        this.clickItemEvent = new cc.Event.EventCustom('ON_TYPE', true);
+        this.clickItemEvent.setUserData({
+            type: this.type,
+        });
+        this.node.dispatchEvent(this.clickItemEvent);
+    },
+
+
+    squareType(evt){
+        cc.log("type: " + this.type);
+    },
+
+
+    initInfor(index, type, Sprite, GameController){
         this.index = index;
         this.type = type;
         this.spriteOpen = Sprite;
+        this.GameController = GameController;
 
         this.labelIndex.string = index;
         this.labelType.string = type;
-
     },
 
-    tounchSquare(){
-        if(GameController.instance.getTmpSquare().length >= 2)
-            return;
+    touchSquare(){
+        
         if(this.state === squareState.CLOSE)
             this.openSquare();
 
-        GameController.instance.pushToTempSquares(this);
+        // this.GameController.pushToTempSquares(this);
+        // this.GameController.emit("PUSH_TEMP",this);
     },
 
 
@@ -82,6 +102,7 @@ cc.Class({
         let sequence = cc.sequence(
                 scaleIn,
                 cc.callFunc(()=>{
+                    this.labelIndex.node.active = false;
                     this.node.getComponent(cc.Sprite).spriteFrame = this.spriteOpen;                    
                 }),
                 scaleOut);
@@ -95,6 +116,7 @@ cc.Class({
         let sequence = cc.sequence(
                 scaleIn,
                 cc.callFunc(()=>{
+                    this.labelIndex.node.active = true;
                     this.node.getComponent(cc.Sprite).spriteFrame = this.defaultSprite;                    
                 }),
                 scaleOut);
@@ -103,19 +125,9 @@ cc.Class({
 
     matchSquare(){
         this.node.zIndex = 1;
-        let scaleIn = cc.scaleTo(0.3,2,2);
-        let sequence = cc.sequence(
-                        scaleIn,
-                        cc.callFunc(()=>{
-                            this.node.removeFromParent(true);
-                            GameController.instance.clearTmpSquare();
-                            GameController.instance.checkWinGame();
-                            GameController.instance.setCanPlay(true);
-                        })
-        );
+        let scaleIn = cc.scaleTo(0.5,2,2);
+        this.node.runAction(scaleIn);
 
-        this.node.runAction(sequence);
-        GameController.instance.removeSquare(this);
     },
 
     getType(){
@@ -124,7 +136,21 @@ cc.Class({
 
     getIndex(){
         return this.index;
+    },
+
+    unuse(){
+    },
+
+    reuse(){
+        cc.log("reuseeeeeeee");
+        this.node.scaleX = 1;
+        this.node.scaleY = 1;
+        this.state = squareState.CLOSE;
+        this.labelIndex.node.active = true;
+        this.node.getComponent(cc.Sprite).spriteFrame = this.defaultSprite;  
     }
+
+   
 });
 
 

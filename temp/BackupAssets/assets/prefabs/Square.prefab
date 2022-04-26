@@ -32,10 +32,13 @@
       },
       {
         "__id__": 9
+      },
+      {
+        "__id__": 10
       }
     ],
     "_prefab": {
-      "__id__": 10
+      "__id__": 12
     },
     "_opacity": 0,
     "_color": {
@@ -175,9 +178,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "37f8f49b-7234-4b87-b76b-766d94d176e6"
+      "__uuid__": "ac50dbce-6197-4eb5-9a6d-7f37b357083a"
     },
-    "fileId": "9feN0V7bNCfpVl6JF3LDNF",
+    "fileId": "3eUdDIHoZOIrfLIw6cJpOj",
     "sync": false
   },
   {
@@ -276,9 +279,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "37f8f49b-7234-4b87-b76b-766d94d176e6"
+      "__uuid__": "ac50dbce-6197-4eb5-9a6d-7f37b357083a"
     },
-    "fileId": "117KNfjghP0ILdevhmHO+U",
+    "fileId": "e3fHqQfHFE34vlMGC3HQTu",
     "sync": false
   },
   {
@@ -323,6 +326,7 @@
     "_enabled": true,
     "index": 0,
     "type": 0,
+    "GameController": null,
     "labelIndex": {
       "__id__": 3
     },
@@ -337,14 +341,96 @@
     "_id": ""
   },
   {
+    "__type__": "cc.Button",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "duration": 0.1,
+    "zoomScale": 1.2,
+    "clickEvents": [
+      {
+        "__id__": 11
+      }
+    ],
+    "_N$interactable": true,
+    "_N$enableAutoGrayEffect": false,
+    "_N$transition": 0,
+    "transition": 0,
+    "_N$normalColor": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_N$pressedColor": {
+      "__type__": "cc.Color",
+      "r": 211,
+      "g": 211,
+      "b": 211,
+      "a": 255
+    },
+    "pressedColor": {
+      "__type__": "cc.Color",
+      "r": 211,
+      "g": 211,
+      "b": 211,
+      "a": 255
+    },
+    "_N$hoverColor": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "hoverColor": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_N$disabledColor": {
+      "__type__": "cc.Color",
+      "r": 124,
+      "g": 124,
+      "b": 124,
+      "a": 255
+    },
+    "_N$normalSprite": null,
+    "_N$pressedSprite": null,
+    "pressedSprite": null,
+    "_N$hoverSprite": null,
+    "hoverSprite": null,
+    "_N$disabledSprite": null,
+    "_N$target": {
+      "__id__": 1
+    },
+    "_id": ""
+  },
+  {
+    "__type__": "cc.ClickEvent",
+    "target": {
+      "__id__": 1
+    },
+    "component": "",
+    "_componentId": "bde07hH36lFD7NcI2WClEpB",
+    "handler": "onClickSquare",
+    "customEventData": ""
+  },
+  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "37f8f49b-7234-4b87-b76b-766d94d176e6"
+      "__uuid__": "ac50dbce-6197-4eb5-9a6d-7f37b357083a"
     },
-    "fileId": "d8eCa88+NCZoV8qf9xn0vt",
+    "fileId": "55tIw99SVDsoA8zXWNScvv",
     "sync": false
   }
 ]
