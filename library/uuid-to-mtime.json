@@ -529,14 +529,14 @@
     "meta": 1650956962932,
     "relativePath": "model/primitives.fbx"
   },
-  "bde07847-dfa9-450f-b35c-236582944a41": {
-    "asset": 1650961881678,
-    "meta": 1650961884611,
-    "relativePath": "scripts/Square.js"
-  },
   "129a7183-9c53-48ba-a36c-b94c5ef9de40": {
-    "asset": 1650962530116,
-    "meta": 1650962532237,
+    "asset": 1650962679835,
+    "meta": 1650962698117,
     "relativePath": "scripts/GameController.js"
+  },
+  "bde07847-dfa9-450f-b35c-236582944a41": {
+    "asset": 1650962696418,
+    "meta": 1650962698117,
+    "relativePath": "scripts/Square.js"
   }
 }

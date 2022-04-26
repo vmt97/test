@@ -75,7 +75,6 @@ cc.Class({
                 let y = 100 + (-row * 64);
                 let square = this.listSquare[index];
 
-                cc.log("check pos: " + x + " : " + y );
                 let startX = x === 0 ? 0 : (x > 0 ? x + 50 : x - 50);
                 let startY = y > 0 ? y +50 : y -50;
 
@@ -97,7 +96,6 @@ cc.Class({
     createSquare(index, type, spriteFrame) {
         let square = null;
         if (this.squarePool.size() > 0) {
-            cc.log("size pool: " + this.squarePool.size());
             square = this.squarePool.get();
             square.emit("REUSE");
 
@@ -105,7 +103,6 @@ cc.Class({
             square = cc.instantiate(this.square);
         }
         square.parent = this.node;
-        cc.log("parent: " + this.node.name);
         // square.on(cc.Node.EventType.TOUCH_END, this.onClickCard, this);
         // this.node.on("ON_TYPE", this.onTouchCard, this);
         square.emit("INIT_INFO", index, type, spriteFrame, this);
@@ -123,7 +120,6 @@ cc.Class({
         let square = evt.target;
         let userData = evt.getUserData();
         let type = userData.type;
-        cc.log("touchhhhhh: " + square.name);
         square.emit("TOUCH_SQUARE");
         this.pushToTempSquares(square, type);
 
@@ -145,7 +141,6 @@ cc.Class({
         this.squarePool.put(square);
         let index = this.listSquare.indexOf(square);
         this.listSquare.splice(index, 1);
-        cc.log("size pool: " + this.squarePool.size());
     },
 
     pushToTempSquares(square, type) {

@@ -83,7 +83,6 @@ cc.Class({
         this.labelType.string = type;
     },
     touchSquare: function touchSquare() {
-        cc.log("touch square: " + this.type + " : " + this.index);
         if (this.state === squareState.CLOSE) this.openSquare();
 
         // this.GameController.pushToTempSquares(this);
@@ -126,7 +125,6 @@ cc.Class({
     },
     unuse: function unuse() {},
     reuse: function reuse() {
-        cc.log("reuseeeeeeee");
         this.node.scaleX = 1;
         this.node.scaleY = 1;
         this.state = squareState.CLOSE;

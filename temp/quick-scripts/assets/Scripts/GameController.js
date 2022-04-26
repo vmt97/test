@@ -76,7 +76,6 @@ cc.Class({
                 var y = 100 + -row * 64;
                 var square = this.listSquare[index];
 
-                cc.log("check pos: " + x + " : " + y);
                 var startX = x === 0 ? 0 : x > 0 ? x + 50 : x - 50;
                 var startY = y > 0 ? y + 50 : y - 50;
 
@@ -93,14 +92,12 @@ cc.Class({
     createSquare: function createSquare(index, type, spriteFrame) {
         var square = null;
         if (this.squarePool.size() > 0) {
-            cc.log("size pool: " + this.squarePool.size());
             square = this.squarePool.get();
             square.emit("REUSE");
         } else {
             square = cc.instantiate(this.square);
         }
         square.parent = this.node;
-        cc.log("parent: " + this.node.name);
         // square.on(cc.Node.EventType.TOUCH_END, this.onClickCard, this);
         // this.node.on("ON_TYPE", this.onTouchCard, this);
         square.emit("INIT_INFO", index, type, spriteFrame, this);
@@ -111,11 +108,9 @@ cc.Class({
         evt.stopPropagation();
 
         if (this.tmpSquare.length >= 2) return;
-
         var square = evt.target;
         var userData = evt.getUserData();
         var type = userData.type;
-        cc.log("touchhhhhh: " + square.name);
         square.emit("TOUCH_SQUARE");
         this.pushToTempSquares(square, type);
     },
@@ -132,7 +127,6 @@ cc.Class({
         this.squarePool.put(square);
         var index = this.listSquare.indexOf(square);
         this.listSquare.splice(index, 1);
-        cc.log("size pool: " + this.squarePool.size());
     },
     pushToTempSquares: function pushToTempSquares(square, type) {
         if (this.tmpSquare.length === 0) {

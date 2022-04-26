@@ -86,7 +86,6 @@ cc.Class({
     },
 
     touchSquare(){
-        cc.log("touch square: " + this.type + " : " + this.index);
         if(this.state === squareState.CLOSE)
             this.openSquare();
 
@@ -142,7 +141,6 @@ cc.Class({
     },
 
     reuse(){
-        cc.log("reuseeeeeeee");
         this.node.scaleX = 1;
         this.node.scaleY = 1;
         this.state = squareState.CLOSE;
