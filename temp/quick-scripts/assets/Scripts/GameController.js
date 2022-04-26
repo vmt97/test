@@ -37,6 +37,7 @@ cc.Class({
             var square = cc.instantiate(this.square);
             this.squarePool.put(square);
         }
+        this.node.on("ON_TYPE", this.onTouchCard, this);
     },
 
 
@@ -99,20 +100,24 @@ cc.Class({
             square = cc.instantiate(this.square);
         }
         square.parent = this.node;
+        cc.log("parent: " + this.node.name);
         // square.on(cc.Node.EventType.TOUCH_END, this.onClickCard, this);
-        square.on("ON_TYPE", this.onTouchCard, this);
+        // this.node.on("ON_TYPE", this.onTouchCard, this);
         square.emit("INIT_INFO", index, type, spriteFrame, this);
         square.setPosition(0, 0, 0);
         this.listSquare.push(square);
     },
     onTouchCard: function onTouchCard(evt) {
+        evt.stopPropagation();
+
         if (this.tmpSquare.length >= 2) return;
-        var square = evt.getCurrentTarget();
+
+        var square = evt.target;
         var userData = evt.getUserData();
         var type = userData.type;
+        cc.log("touchhhhhh: " + square.name);
         square.emit("TOUCH_SQUARE");
         this.pushToTempSquares(square, type);
-        evt.stopPropagation();
     },
     getTmpSquare: function getTmpSquare() {
         return this.tmpSquare;

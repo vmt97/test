@@ -530,13 +530,13 @@
     "relativePath": "model/primitives.fbx"
   },
   "bde07847-dfa9-450f-b35c-236582944a41": {
-    "asset": 1650959279515,
-    "meta": 1650959291105,
+    "asset": 1650961881678,
+    "meta": 1650961884611,
     "relativePath": "scripts/Square.js"
   },
   "129a7183-9c53-48ba-a36c-b94c5ef9de40": {
-    "asset": 1650959985091,
-    "meta": 1650959996835,
+    "asset": 1650962530116,
+    "meta": 1650962532237,
     "relativePath": "scripts/GameController.js"
   }
 }

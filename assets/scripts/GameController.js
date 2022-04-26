@@ -31,6 +31,7 @@ cc.Class({
             let square = cc.instantiate(this.square);
             this.squarePool.put(square);
         }
+        this.node.on("ON_TYPE", this.onTouchCard, this);
 
     },
 
@@ -104,8 +105,9 @@ cc.Class({
             square = cc.instantiate(this.square);
         }
         square.parent = this.node;
+        cc.log("parent: " + this.node.name);
         // square.on(cc.Node.EventType.TOUCH_END, this.onClickCard, this);
-        square.on("ON_TYPE", this.onTouchCard, this);
+        // this.node.on("ON_TYPE", this.onTouchCard, this);
         square.emit("INIT_INFO", index, type, spriteFrame, this);
         square.setPosition(0, 0, 0);
         this.listSquare.push(square);
@@ -114,14 +116,17 @@ cc.Class({
 
 
     onTouchCard(evt) {
+        evt.stopPropagation();
+
         if (this.tmpSquare.length >= 2)
             return;
-        let square = evt.getCurrentTarget();
+        let square = evt.target;
         let userData = evt.getUserData();
         let type = userData.type;
+        cc.log("touchhhhhh: " + square.name);
         square.emit("TOUCH_SQUARE");
         this.pushToTempSquares(square, type);
-        evt.stopPropagation();
+
     },
 
     getTmpSquare() {
@@ -151,7 +156,7 @@ cc.Class({
         else if (this.tmpSquare.length === 1) {
             if (this.tmpSquare[0] != square) {
                 this.pushToTempList(square);
-                this.checkMatchSquare(type);
+                this.checkMatchSquare(type);    
             }
         }
     },
